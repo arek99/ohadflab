@@ -1,6 +1,136 @@
 {
 	"name": "CloudStreaming",
 	"properties": {
+		"activities": [
+			{
+				"name": "Addresses",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "AddressID",
+									"type": "Guid"
+								},
+								"sink": {
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CustomerID",
+									"type": "Guid"
+								},
+								"sink": {
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "AddressLine1",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "AddressLine2",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "City",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "State",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ZipCode",
+									"type": "String"
+								},
+								"sink": {
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CreatedDate",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "UpdatedDate",
+									"type": "DateTime"
+								},
+								"sink": {
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "AzureSQL_CloudStreaming",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "StreamingAddresses",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
 		"annotations": []
 	}
 }
