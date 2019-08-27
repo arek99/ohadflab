@@ -1,0 +1,6 @@
+{
+	"name": "integrationRuntimeVA",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}
