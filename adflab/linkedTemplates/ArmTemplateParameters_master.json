@@ -1,0 +1,36 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adflab"
+		},
+		"AzureSql_CloudSales_connectionString": {
+			"value": ""
+		},
+		"ADLS2Southridge_accountKey": {
+			"value": ""
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"value": ""
+		},
+		"CosmosDb1_connectionString": {
+			"value": ""
+		},
+		"ADLS2Southridge_properties_typeProperties_url": {
+			"value": "https://southridgedala.dfs.core.windows.net"
+		},
+		"AzureDataLakeStorageFile1_properties_typeProperties_fileName": {
+			"value": "movies.json"
+		},
+		"AzureDataLakeStorageFile1_properties_typeProperties_folderPath": {
+			"value": "southridge"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
