@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "FileServerLocation",
-				"folderPath": "Rentals"
+				"folderPath": "Transactions_2018"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
