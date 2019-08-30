@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "fourthcofee/transactions2018",
+				"folderPath": "fourthcofee/rentals",
 				"fileSystem": "southridge"
 			},
 			"columnDelimiter": ",",
