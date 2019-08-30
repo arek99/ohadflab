@@ -5,26 +5,44 @@
 		"factoryName": {
 			"value": "adflab"
 		},
-		"AzureSql_CloudSales_connectionString": {
-			"value": ""
-		},
 		"ADLS2Southridge_accountKey": {
 			"value": ""
 		},
 		"AzureSqlDatabase1_connectionString": {
 			"value": ""
 		},
+		"AzureSql_CloudSales_connectionString": {
+			"value": ""
+		},
 		"CosmosDb1_connectionString": {
 			"value": ""
 		},
-		"ADLS2Southridge_properties_typeProperties_url": {
-			"value": "https://southridgedala.dfs.core.windows.net"
+		"FileServer4CofeeRentals_password": {
+			"value": ""
+		},
+		"SqlServer1_connectionString": {
+			"value": ""
+		},
+		"SqlServer1_password": {
+			"value": ""
 		},
 		"AzureDataLakeStorageFile1_properties_typeProperties_fileName": {
 			"value": "movies.json"
 		},
 		"AzureDataLakeStorageFile1_properties_typeProperties_folderPath": {
 			"value": "southridge"
+		},
+		"ADLS2Southridge_properties_typeProperties_url": {
+			"value": "https://southridgedala.dfs.core.windows.net"
+		},
+		"FileServer4CofeeRentals_properties_typeProperties_host": {
+			"value": "C:\\"
+		},
+		"FileServer4CofeeRentals_properties_typeProperties_userId": {
+			"value": "openhackadmin"
+		},
+		"SqlServer1_properties_typeProperties_userName": {
+			"value": "openhackadmin"
 		},
 		"containerUri": {
 			"value": ""

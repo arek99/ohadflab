@@ -7,10 +7,6 @@
 			"metadata": "Data Factory Name",
 			"defaultValue": "adflab"
 		},
-		"AzureSql_CloudSales_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'AzureSql_CloudSales'"
-		},
 		"ADLS2Southridge_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'ADLS2Southridge'"
@@ -19,13 +15,25 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1'"
 		},
+		"AzureSql_CloudSales_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSql_CloudSales'"
+		},
 		"CosmosDb1_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'CosmosDb1'"
 		},
-		"ADLS2Southridge_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://southridgedala.dfs.core.windows.net"
+		"FileServer4CofeeRentals_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'FileServer4CofeeRentals'"
+		},
+		"SqlServer1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SqlServer1'"
+		},
+		"SqlServer1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'SqlServer1'"
 		},
 		"AzureDataLakeStorageFile1_properties_typeProperties_fileName": {
 			"type": "string",
@@ -34,6 +42,22 @@
 		"AzureDataLakeStorageFile1_properties_typeProperties_folderPath": {
 			"type": "string",
 			"defaultValue": "southridge"
+		},
+		"ADLS2Southridge_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://southridgedala.dfs.core.windows.net"
+		},
+		"FileServer4CofeeRentals_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "C:\\"
+		},
+		"FileServer4CofeeRentals_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "openhackadmin"
+		},
+		"SqlServer1_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "openhackadmin"
 		},
 		"containerUri": {
 			"type": "string",
@@ -62,20 +86,26 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"AzureSql_CloudSales_connectionString": {
-						"value": "[parameters('AzureSql_CloudSales_connectionString')]"
-					},
 					"ADLS2Southridge_accountKey": {
 						"value": "[parameters('ADLS2Southridge_accountKey')]"
 					},
 					"AzureSqlDatabase1_connectionString": {
 						"value": "[parameters('AzureSqlDatabase1_connectionString')]"
 					},
+					"AzureSql_CloudSales_connectionString": {
+						"value": "[parameters('AzureSql_CloudSales_connectionString')]"
+					},
 					"CosmosDb1_connectionString": {
 						"value": "[parameters('CosmosDb1_connectionString')]"
 					},
 					"ADLS2Southridge_properties_typeProperties_url": {
 						"value": "[parameters('ADLS2Southridge_properties_typeProperties_url')]"
+					},
+					"AzureDataLakeStorageFile1_properties_typeProperties_fileName": {
+						"value": "[parameters('AzureDataLakeStorageFile1_properties_typeProperties_fileName')]"
+					},
+					"AzureDataLakeStorageFile1_properties_typeProperties_folderPath": {
+						"value": "[parameters('AzureDataLakeStorageFile1_properties_typeProperties_folderPath')]"
 					}
 				}
 			},
@@ -95,11 +125,23 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"AzureDataLakeStorageFile1_properties_typeProperties_fileName": {
-						"value": "[parameters('AzureDataLakeStorageFile1_properties_typeProperties_fileName')]"
+					"FileServer4CofeeRentals_password": {
+						"value": "[parameters('FileServer4CofeeRentals_password')]"
 					},
-					"AzureDataLakeStorageFile1_properties_typeProperties_folderPath": {
-						"value": "[parameters('AzureDataLakeStorageFile1_properties_typeProperties_folderPath')]"
+					"SqlServer1_connectionString": {
+						"value": "[parameters('SqlServer1_connectionString')]"
+					},
+					"SqlServer1_password": {
+						"value": "[parameters('SqlServer1_password')]"
+					},
+					"FileServer4CofeeRentals_properties_typeProperties_host": {
+						"value": "[parameters('FileServer4CofeeRentals_properties_typeProperties_host')]"
+					},
+					"FileServer4CofeeRentals_properties_typeProperties_userId": {
+						"value": "[parameters('FileServer4CofeeRentals_properties_typeProperties_userId')]"
+					},
+					"SqlServer1_properties_typeProperties_userName": {
+						"value": "[parameters('SqlServer1_properties_typeProperties_userName')]"
 					}
 				}
 			},
