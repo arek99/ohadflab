@@ -1,9 +1,9 @@
 {
-	"name": "fourthcofee",
+	"name": "fourthcofeeRentals",
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy_u0l",
+				"name": "Rentals",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -58,6 +58,66 @@
 				"outputs": [
 					{
 						"referenceName": "DestinationDataset_u0l",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Transactions2018",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "Rentals/"
+					},
+					{
+						"name": "Destination",
+						"value": "southridge/fourthcofee/rentals/"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "FileServerReadSettings",
+							"recursive": true,
+							"wildcardFileName": "*.*"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings",
+							"skipLineCount": 0
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "FCTransactions",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "FCT2018",
 						"type": "DatasetReference"
 					}
 				]

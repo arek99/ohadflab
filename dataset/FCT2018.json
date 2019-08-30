@@ -1,0 +1,23 @@
+{
+	"name": "FCT2018",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ADLS2Southridge",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "fourthcofee/transactions2018",
+				"fileSystem": "southridge"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
