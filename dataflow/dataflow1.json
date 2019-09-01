@@ -21,7 +21,7 @@
 			],
 			"sinks": [],
 			"transformations": [],
-			"script": "\n\nsource(output(\n\t\tOrderID as string,\n\t\tCustomerID as string,\n\t\tOrderDate as date 'yyyy-MM-dd',\n\t\tShipDate as date 'yyyy-MM-dd',\n\t\tTotalCost as decimal(10,0),\n\t\tCreatedDate as date 'yyyy-MM-dd',\n\t\tUpdatedDate as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> OrdersNew\nsource(output(\n\t\tColumn_1 as string,\n\t\tColumn_2 as string,\n\t\tColumn_3 as string,\n\t\tColumn_4 as string,\n\t\tColumn_5 as string,\n\t\tColumn_6 as string,\n\t\tColumn_7 as string,\n\t\tColumn_8 as string,\n\t\tColumn_9 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> OrderDetailsNew"
+			"script": "\n\nsource(output(\n\t\tOrderID as string,\n\t\tCustomerID as string,\n\t\tOrderDate as date 'yyyy-MM-dd',\n\t\tShipDate as date 'yyyy-MM-dd',\n\t\tTotalCost as decimal(10,0),\n\t\tCreatedDate as date 'yyyy-MM-dd',\n\t\tUpdatedDate as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> OrdersNew\nsource(output(\n\t\tOrderDetailID as string,\n\t\tOrderID as string,\n\t\tMovieID as string,\n\t\tQuantity as integer '000',\n\t\tUnitCost as decimal(10,0),\n\t\tLineNumber as integer '000',\n\t\tCreatedDate as date 'yyyy-MM-dd',\n\t\tUpdatedDate as date 'yyyy-MM-dd'\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> OrderDetailsNew"
 		}
 	}
 }
