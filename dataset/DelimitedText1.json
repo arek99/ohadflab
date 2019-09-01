@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "analyticsdataset",
+				"folderPath": "analyticsdataset/salesorders",
 				"fileSystem": "southridge"
 			},
 			"columnDelimiter": ",",
