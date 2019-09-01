@@ -21,7 +21,7 @@
 		},
 		"schema": [
 			{
-				"name": "AddressID",
+				"name": "OrderID",
 				"type": "String"
 			},
 			{
@@ -29,23 +29,15 @@
 				"type": "String"
 			},
 			{
-				"name": "AddressLine1",
+				"name": "OrderDate",
 				"type": "String"
 			},
 			{
-				"name": "AddressLine2",
+				"name": "ShipDate",
 				"type": "String"
 			},
 			{
-				"name": "City",
-				"type": "String"
-			},
-			{
-				"name": "State",
-				"type": "String"
-			},
-			{
-				"name": "ZipCode",
+				"name": "TotalCost",
 				"type": "String"
 			},
 			{
