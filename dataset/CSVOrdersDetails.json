@@ -21,35 +21,35 @@
 		},
 		"schema": [
 			{
-				"name": "a004dd6d-8c75-49e9-ab9f-000061f96947",
+				"name": "OrderDetailID",
 				"type": "String"
 			},
 			{
-				"name": "ee86c3e0-19ac-4781-b36a-fff533c373c4",
+				"name": "OrderID",
 				"type": "String"
 			},
 			{
-				"name": "90f708a0-2408-44b5-bba8-2918dfa6930a",
+				"name": "MovieID",
 				"type": "String"
 			},
 			{
-				"name": "1",
+				"name": "Quantity",
 				"type": "String"
 			},
 			{
-				"name": "14.9900",
+				"name": "UnitCost",
 				"type": "String"
 			},
 			{
-				"name": "2",
+				"name": "LineNumber",
 				"type": "String"
 			},
 			{
-				"name": "2017-07-27 00:00:00.00000006",
+				"name": "CreatedDate",
 				"type": "String"
 			},
 			{
-				"name": "2017-07-27 00:00:00.00000007",
+				"name": "UpdatedDate",
 				"type": "String"
 			}
 		]
