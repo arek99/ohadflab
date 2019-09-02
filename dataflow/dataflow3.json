@@ -1,0 +1,51 @@
+{
+	"name": "dataflow3",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "CSVCustomers",
+						"type": "DatasetReference"
+					},
+					"name": "cloudsalescustoemrs"
+				},
+				{
+					"dataset": {
+						"referenceName": "CsvAddresses",
+						"type": "DatasetReference"
+					},
+					"name": "cloudsalesaddress"
+				},
+				{
+					"dataset": {
+						"referenceName": "Cutomers",
+						"type": "DatasetReference"
+					},
+					"name": "streamingCustomers"
+				},
+				{
+					"dataset": {
+						"referenceName": "StreamingAddresses",
+						"type": "DatasetReference"
+					},
+					"name": "cloudstreamingaddress"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "Join1"
+				},
+				{
+					"name": "Join2"
+				},
+				{
+					"name": "Join3"
+				}
+			],
+			"script": "\n\nsource(output(\n\t\tCustomerID as string,\n\t\tLastName as string,\n\t\tFirstName as string,\n\t\tPhoneNumber as string,\n\t\tCreatedDate as string,\n\t\tUpdatedDate as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> cloudsalescustoemrs\nsource(output(\n\t\tAddressID as string,\n\t\tCustomerID as string,\n\t\tAddressLine1 as string,\n\t\tAddressLine2 as string,\n\t\tCity as string,\n\t\tState as string,\n\t\tZipCode as string,\n\t\tCreatedDate as string,\n\t\tUpdatedDate as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> cloudsalesaddress\nsource(output(\n\t\tCustomerID as string,\n\t\tLastName as string,\n\t\tFirstName as string,\n\t\tPhoneNumber as string,\n\t\tCreatedDate as string,\n\t\tUpdatedDate as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> streamingCustomers\nsource(output(\n\t\tAddressID as string,\n\t\tCustomerID as string,\n\t\tAddressLine1 as string,\n\t\tAddressLine2 as string,\n\t\tCity as string,\n\t\tState as string,\n\t\tZipCode as string,\n\t\tCreatedDate as string,\n\t\tUpdatedDate as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> cloudstreamingaddress\ncloudsalescustoemrs, cloudsalesaddress join(cloudsalescustoemrs@CustomerID == cloudsalesaddress@CustomerID,\n\tjoinType:'inner',\n\tbroadcast: 'none')~> Join1\nstreamingCustomers, cloudstreamingaddress join(streamingCustomers@CustomerID == cloudstreamingaddress@CustomerID,\n\tjoinType:'inner',\n\tbroadcast: 'none')~> Join2\nJoin1, Join2 join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),\n\tjoinType:'outer',\n\tbroadcast: 'none')~> Join3"
+		}
+	}
+}
