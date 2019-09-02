@@ -3,8 +3,8 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Python1",
-				"type": "DatabricksSparkPython",
+				"name": "Streaming",
+				"type": "DatabricksNotebook",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
