@@ -3,10 +3,22 @@
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
-			"sources": [],
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText2",
+						"type": "DatasetReference"
+					},
+					"name": "fourthcust"
+				}
+			],
 			"sinks": [],
-			"transformations": [],
-			"script": "\n"
+			"transformations": [
+				{
+					"name": "SourceSystemId"
+				}
+			],
+			"script": "\n\nsource(output(\n\t\tCustomerID as string,\n\t\tLastName as string,\n\t\tFirstName as string,\n\t\tAddressLine1 as string,\n\t\tAddressLine2 as string,\n\t\tCity as string,\n\t\tState as string,\n\t\tZipCode as string,\n\t\tPhoneNumber as string,\n\t\tCreatedDate as string,\n\t\tUpdatedDate as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> fourthcust\nfourthcust derive(SourceSystemId = 2,\n\t\tGlobalCustomerID = add('2-',CustomerID)) ~> SourceSystemId"
 		}
 	}
 }
