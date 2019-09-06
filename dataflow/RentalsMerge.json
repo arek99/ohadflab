@@ -10,11 +10,18 @@
 						"type": "DatasetReference"
 					},
 					"name": "fcrenttrans"
+				},
+				{
+					"dataset": {
+						"referenceName": "DestinationDataset_u0l",
+						"type": "DatasetReference"
+					},
+					"name": "fcrent"
 				}
 			],
 			"sinks": [],
 			"transformations": [],
-			"script": "\n\nsource(allowSchemaDrift: true,\n\tvalidateSchema: false) ~> fcrenttrans"
+			"script": "\n\nsource(allowSchemaDrift: true,\n\tvalidateSchema: false) ~> fcrenttrans\nsource(output(\n\t\tColumn_1 as string,\n\t\tColumn_2 as string,\n\t\tColumn_3 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> fcrent"
 		}
 	}
 }
