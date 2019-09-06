@@ -6,22 +6,26 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "FCT2018",
+						"referenceName": "fcrentsnew",
 						"type": "DatasetReference"
 					},
 					"name": "fcrenttrans"
 				},
 				{
 					"dataset": {
-						"referenceName": "DestinationDataset_u0l",
+						"referenceName": "fcrentrent",
 						"type": "DatasetReference"
 					},
-					"name": "fcrent"
+					"name": "fcrenretn"
 				}
 			],
 			"sinks": [],
-			"transformations": [],
-			"script": "\n\nsource(allowSchemaDrift: true,\n\tvalidateSchema: false) ~> fcrenttrans\nsource(output(\n\t\tColumn_1 as string,\n\t\tColumn_2 as string,\n\t\tColumn_3 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> fcrent"
+			"transformations": [
+				{
+					"name": "UnionRentals"
+				}
+			],
+			"script": "\n\nsource(allowSchemaDrift: true,\n\tvalidateSchema: false) ~> fcrenttrans\nsource(output(\n\t\tActorID as string,\n\t\tActorName as string,\n\t\tGender as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> fcrenretn\nfcrenttrans, fcrenretn union(byName: true)~> UnionRentals"
 		}
 	}
 }
