@@ -1,0 +1,20 @@
+{
+	"name": "RentalsMerge",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "FCT2018",
+						"type": "DatasetReference"
+					},
+					"name": "fcrenttrans"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"script": "\n\nsource(allowSchemaDrift: true,\n\tvalidateSchema: false) ~> fcrenttrans"
+		}
+	}
+}
