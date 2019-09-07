@@ -1,0 +1,31 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Actors",
+						"type": "DatasetReference"
+					},
+					"name": "actrosvadw"
+				},
+				{
+					"dataset": {
+						"referenceName": "fcactors",
+						"type": "DatasetReference"
+					},
+					"name": "actorfcdw"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "Union1"
+				}
+			],
+			"script": "\n\nsource(allowSchemaDrift: true,\n\tvalidateSchema: false) ~> actrosvadw\nsource(output(\n\t\tActorID as string,\n\t\tActorName as string,\n\t\tGender as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> actorfcdw\nactrosvadw, actorfcdw union(byName: true)~> Union1"
+		}
+	}
+}
