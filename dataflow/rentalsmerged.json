@@ -10,11 +10,18 @@
 						"type": "DatasetReference"
 					},
 					"name": "adrenfc"
+				},
+				{
+					"dataset": {
+						"referenceName": "adrentvan",
+						"type": "DatasetReference"
+					},
+					"name": "adrentvan"
 				}
 			],
 			"sinks": [],
 			"transformations": [],
-			"script": "\n\nsource(output(\n\t\tSourceSystemID as integer '000',\n\t\tGlobalTransactionID as string,\n\t\tSourceSystemTransactionID as string,\n\t\tCustomerID as string,\n\t\tMovieID as string,\n\t\tRentalDate as date 'yyyy-MM-dd',\n\t\tReturnDate as date 'yyyy-MM-dd',\n\t\tRentalCost as decimal(10,0),\n\t\tLateFee as decimal(10,0),\n\t\tRewindFlag as boolean,\n\t\tCreatedDate as date 'yyyy-MM-dd',\n\t\tUpdatedDate as date 'yyyy-MM-dd'\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> adrenfc"
+			"script": "\n\nsource(output(\n\t\tSourceSystemID as integer '000',\n\t\tGlobalTransactionID as string,\n\t\tSourceSystemTransactionID as string,\n\t\tCustomerID as string,\n\t\tMovieID as string,\n\t\tRentalDate as date 'yyyy-MM-dd',\n\t\tReturnDate as date 'yyyy-MM-dd',\n\t\tRentalCost as decimal(10,0),\n\t\tLateFee as decimal(10,0),\n\t\tRewindFlag as boolean,\n\t\tCreatedDate as date 'yyyy-MM-dd',\n\t\tUpdatedDate as date 'yyyy-MM-dd'\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> adrenfc\nsource(output(\n\t\tSourceSystemID as integer '000',\n\t\tGlobalTransactionID as string,\n\t\tSourceSystemTransactionID as string,\n\t\tCustomerID as string,\n\t\tMovieID as string,\n\t\tRentalDate as date 'yyyy-MM-dd',\n\t\tReturnDate as date 'yyyy-MM-dd',\n\t\tRentalCost as decimal(10,0),\n\t\tLateFee as decimal(10,0),\n\t\tRewindFlag as boolean,\n\t\tCreatedDate as date 'yyyy-MM-dd',\n\t\tUpdatedDate as date 'yyyy-MM-dd'\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> adrentvan"
 		}
 	}
 }
