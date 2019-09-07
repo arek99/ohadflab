@@ -40,6 +40,13 @@
 						"type": "DatasetReference"
 					},
 					"name": "southcatfin"
+				},
+				{
+					"dataset": {
+						"referenceName": "vacatalogfinal",
+						"type": "DatasetReference"
+					},
+					"name": "vafinalcat"
 				}
 			],
 			"transformations": [
@@ -50,7 +57,7 @@
 					"name": "Select1"
 				}
 			],
-			"script": "\n\nsource(output(\n\t\tSourceSystemID as string,\n\t\tGlobalMovieID as string,\n\t\tSourceSystemMovieID as string,\n\t\tOnlineMovieID as string,\n\t\tActorID as string,\n\t\tActorName as string,\n\t\tGender as string,\n\t\tMovieTitle as string,\n\t\tCategory as string,\n\t\tRating as string,\n\t\tRunTimeMin as string,\n\t\tReleaseDate as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> fccat\nsource(output(\n\t\tSourceSystemID as string,\n\t\tGlobalMovieID as string,\n\t\tSourceSystemMovieID as string,\n\t\tSouthridgeMovieID as string,\n\t\tactors as string,\n\t\ttitle as string,\n\t\tgenre as string,\n\t\trating as string,\n\t\truntime as string,\n\t\treleaseYear as string,\n\t\tavailabilityDate as string,\n\t\tstreamingAvailabilityDate as string,\n\t\ttier as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> southrcat\nsource(output(\n\t\tSourceSystemID as string,\n\t\tGlobalMovieID as string,\n\t\tSourceSystemMovieID as string,\n\t\tOnlineMovieID as string,\n\t\tActorID as string,\n\t\tActorName as string,\n\t\tGender as string,\n\t\tMovieTitle as string,\n\t\tCategory as string,\n\t\tRating as string,\n\t\tRunTimeMin as string,\n\t\tReleaseDate as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> vacat\nsouthrcat derive(ActorID = toInteger(title),\n\t\tActorName = toInteger(title)) ~> DerivedColumn1\nDerivedColumn1 select(mapColumn(\n\t\tSourceSystemID,\n\t\tGlobalMovieID,\n\t\tSourceSystemMovieID,\n\t\tSouthridgeMovieID,\n\t\tActorID,\n\t\tActorName,\n\t\tactors,\n\t\ttitle,\n\t\tgenre,\n\t\trating,\n\t\truntime,\n\t\treleaseYear,\n\t\tavailabilityDate,\n\t\tstreamingAvailabilityDate\n\t)) ~> Select1\nfccat sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tpartitionFileNames:['fccatalog.csv'],\n\tpartitionBy('hash', 1)) ~> catalogfc\nSelect1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tpartitionFileNames:['srcatalog.csv'],\n\tpartitionBy('hash', 1)) ~> southcatfin"
+			"script": "\n\nsource(output(\n\t\tSourceSystemID as string,\n\t\tGlobalMovieID as string,\n\t\tSourceSystemMovieID as string,\n\t\tOnlineMovieID as string,\n\t\tActorID as string,\n\t\tActorName as string,\n\t\tGender as string,\n\t\tMovieTitle as string,\n\t\tCategory as string,\n\t\tRating as string,\n\t\tRunTimeMin as string,\n\t\tReleaseDate as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> fccat\nsource(output(\n\t\tSourceSystemID as string,\n\t\tGlobalMovieID as string,\n\t\tSourceSystemMovieID as string,\n\t\tSouthridgeMovieID as string,\n\t\tactors as string,\n\t\ttitle as string,\n\t\tgenre as string,\n\t\trating as string,\n\t\truntime as string,\n\t\treleaseYear as string,\n\t\tavailabilityDate as string,\n\t\tstreamingAvailabilityDate as string,\n\t\ttier as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> southrcat\nsource(output(\n\t\tSourceSystemID as string,\n\t\tGlobalMovieID as string,\n\t\tSourceSystemMovieID as string,\n\t\tOnlineMovieID as string,\n\t\tActorID as string,\n\t\tActorName as string,\n\t\tGender as string,\n\t\tMovieTitle as string,\n\t\tCategory as string,\n\t\tRating as string,\n\t\tRunTimeMin as string,\n\t\tReleaseDate as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> vacat\nsouthrcat derive(ActorID = toInteger(title),\n\t\tActorName = toInteger(title)) ~> DerivedColumn1\nDerivedColumn1 select(mapColumn(\n\t\tSourceSystemID,\n\t\tGlobalMovieID,\n\t\tSourceSystemMovieID,\n\t\tSouthridgeMovieID,\n\t\tActorID,\n\t\tActorName,\n\t\tactors,\n\t\ttitle,\n\t\tgenre,\n\t\trating,\n\t\truntime,\n\t\treleaseYear,\n\t\tavailabilityDate,\n\t\tstreamingAvailabilityDate\n\t)) ~> Select1\nfccat sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tpartitionFileNames:['fccatalog.csv'],\n\tpartitionBy('hash', 1)) ~> catalogfc\nSelect1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tpartitionFileNames:['catalogsr.csv'],\n\tpartitionBy('hash', 1)) ~> southcatfin\nvacat sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tpartitionFileNames:['catalogva.csv'],\n\tpartitionBy('hash', 1)) ~> vafinalcat"
 		}
 	}
 }
