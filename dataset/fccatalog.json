@@ -1,0 +1,73 @@
+{
+	"name": "fccatalog",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ADLS2Southridge",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "catalog.csv",
+				"folderPath": "fourthcofee",
+				"fileSystem": "southridge"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "SourceSystemID",
+				"type": "String"
+			},
+			{
+				"name": "GlobalMovieID",
+				"type": "String"
+			},
+			{
+				"name": "SourceSystemMovieID",
+				"type": "String"
+			},
+			{
+				"name": "OnlineMovieID",
+				"type": "String"
+			},
+			{
+				"name": "ActorID",
+				"type": "String"
+			},
+			{
+				"name": "ActorName",
+				"type": "String"
+			},
+			{
+				"name": "Gender",
+				"type": "String"
+			},
+			{
+				"name": "MovieTitle",
+				"type": "String"
+			},
+			{
+				"name": "Category",
+				"type": "String"
+			},
+			{
+				"name": "Rating",
+				"type": "String"
+			},
+			{
+				"name": "RunTimeMin",
+				"type": "String"
+			},
+			{
+				"name": "ReleaseDate",
+				"type": "String"
+			}
+		]
+	}
+}

@@ -1,0 +1,34 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "fccatalog",
+						"type": "DatasetReference"
+					},
+					"name": "fccat"
+				},
+				{
+					"dataset": {
+						"referenceName": "sotuhcat",
+						"type": "DatasetReference"
+					},
+					"name": "southrcat"
+				},
+				{
+					"name": "source2"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "Union1"
+				}
+			],
+			"script": "\n\nsource(output(\n\t\tSourceSystemID as string,\n\t\tGlobalMovieID as string,\n\t\tSourceSystemMovieID as string,\n\t\tOnlineMovieID as string,\n\t\tActorID as string,\n\t\tActorName as string,\n\t\tGender as string,\n\t\tMovieTitle as string,\n\t\tCategory as string,\n\t\tRating as string,\n\t\tRunTimeMin as string,\n\t\tReleaseDate as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> fccat\nsource(output(\n\t\tSourceSystemID as string,\n\t\tGlobalMovieID as string,\n\t\tSourceSystemMovieID as string,\n\t\tSouthridgeMovieID as string,\n\t\tactors as string,\n\t\ttitle as string,\n\t\tgenre as string,\n\t\trating as string,\n\t\truntime as string,\n\t\treleaseYear as string,\n\t\tavailabilityDate as string,\n\t\tstreamingAvailabilityDate as string,\n\t\ttier as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> southrcat\nsource(output(\n\t\t\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> source2\nfccat union(byName: true)~> Union1"
+		}
+	}
+}
