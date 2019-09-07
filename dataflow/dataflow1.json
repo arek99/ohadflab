@@ -19,16 +19,24 @@
 					"name": "southrcat"
 				},
 				{
-					"name": "source2"
+					"dataset": {
+						"referenceName": "vacatal",
+						"type": "DatasetReference"
+					},
+					"name": "vacat"
 				}
 			],
-			"sinks": [],
-			"transformations": [
+			"sinks": [
 				{
-					"name": "Union1"
+					"dataset": {
+						"referenceName": "fccatfin",
+						"type": "DatasetReference"
+					},
+					"name": "catalogfc"
 				}
 			],
-			"script": "\n\nsource(output(\n\t\tSourceSystemID as string,\n\t\tGlobalMovieID as string,\n\t\tSourceSystemMovieID as string,\n\t\tOnlineMovieID as string,\n\t\tActorID as string,\n\t\tActorName as string,\n\t\tGender as string,\n\t\tMovieTitle as string,\n\t\tCategory as string,\n\t\tRating as string,\n\t\tRunTimeMin as string,\n\t\tReleaseDate as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> fccat\nsource(output(\n\t\tSourceSystemID as string,\n\t\tGlobalMovieID as string,\n\t\tSourceSystemMovieID as string,\n\t\tSouthridgeMovieID as string,\n\t\tactors as string,\n\t\ttitle as string,\n\t\tgenre as string,\n\t\trating as string,\n\t\truntime as string,\n\t\treleaseYear as string,\n\t\tavailabilityDate as string,\n\t\tstreamingAvailabilityDate as string,\n\t\ttier as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> southrcat\nsource(output(\n\t\t\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> source2\nfccat union(byName: true)~> Union1"
+			"transformations": [],
+			"script": "\n\nsource(output(\n\t\tSourceSystemID as string,\n\t\tGlobalMovieID as string,\n\t\tSourceSystemMovieID as string,\n\t\tOnlineMovieID as string,\n\t\tActorID as string,\n\t\tActorName as string,\n\t\tGender as string,\n\t\tMovieTitle as string,\n\t\tCategory as string,\n\t\tRating as string,\n\t\tRunTimeMin as string,\n\t\tReleaseDate as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> fccat\nsource(output(\n\t\tSourceSystemID as string,\n\t\tGlobalMovieID as string,\n\t\tSourceSystemMovieID as string,\n\t\tSouthridgeMovieID as string,\n\t\tactors as string,\n\t\ttitle as string,\n\t\tgenre as string,\n\t\trating as string,\n\t\truntime as string,\n\t\treleaseYear as string,\n\t\tavailabilityDate as string,\n\t\tstreamingAvailabilityDate as string,\n\t\ttier as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> southrcat\nsource(output(\n\t\tSourceSystemID as string,\n\t\tGlobalMovieID as string,\n\t\tSourceSystemMovieID as string,\n\t\tOnlineMovieID as string,\n\t\tActorID as string,\n\t\tActorName as string,\n\t\tGender as string,\n\t\tMovieTitle as string,\n\t\tCategory as string,\n\t\tRating as string,\n\t\tRunTimeMin as string,\n\t\tReleaseDate as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> vacat\nfccat sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tpartitionFileNames:['fccatalog.csv'],\n\tpartitionBy('hash', 1)) ~> catalogfc"
 		}
 	}
 }
