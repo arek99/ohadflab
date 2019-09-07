@@ -1,0 +1,20 @@
+{
+	"name": "rentalsmerged",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "adrenfc",
+						"type": "DatasetReference"
+					},
+					"name": "adrenfc"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"script": "\n\nsource(output(\n\t\tSourceSystemID as integer,\n\t\tGlobalTransactionID as string,\n\t\tSourceSystemTransactionID as string,\n\t\tCustomerID as string,\n\t\tMovieID as string,\n\t\tRentalDate as date,\n\t\tReturnDate as date,\n\t\tRentalCost as decimal(10,0),\n\t\tLateFee as decimal(10,0),\n\t\tRewindFlag as boolean,\n\t\tCreatedDate as date,\n\t\tUpdatedDate as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> adrenfc"
+		}
+	}
+}
