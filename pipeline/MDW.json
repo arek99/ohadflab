@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy_8e1",
+				"name": "DimActors",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -67,6 +67,22 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "DimCategory",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"enableStaging": false
+				}
 			}
 		],
 		"annotations": []
