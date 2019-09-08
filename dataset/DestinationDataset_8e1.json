@@ -1,0 +1,16 @@
+{
+	"name": "DestinationDataset_8e1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SRMDW",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "DimActors"
+		}
+	}
+}
