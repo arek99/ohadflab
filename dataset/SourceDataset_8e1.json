@@ -1,0 +1,12 @@
+{
+	"name": "SourceDataset_8e1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SRMDW",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": []
+	}
+}
