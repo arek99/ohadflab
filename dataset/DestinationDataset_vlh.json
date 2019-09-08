@@ -1,0 +1,41 @@
+{
+	"name": "DestinationDataset_vlh",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SRMDW",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "ActorSK",
+				"type": "int",
+				"precision": 10,
+				"scale": 255
+			},
+			{
+				"name": "ActorID",
+				"type": "uniqueidentifier",
+				"precision": 255,
+				"scale": 255
+			},
+			{
+				"name": "ActorName",
+				"type": "varchar",
+				"precision": 255,
+				"scale": 255
+			},
+			{
+				"name": "ActorGender",
+				"type": "char",
+				"precision": 255,
+				"scale": 255
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "DimActors"
+		}
+	}
+}
