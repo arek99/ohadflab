@@ -6,17 +6,17 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "Actors",
-						"type": "DatasetReference"
-					},
-					"name": "actrosvadw"
-				},
-				{
-					"dataset": {
 						"referenceName": "fcactors",
 						"type": "DatasetReference"
 					},
 					"name": "actorfcdw"
+				},
+				{
+					"dataset": {
+						"referenceName": "vaasctorsdw",
+						"type": "DatasetReference"
+					},
+					"name": "vaadw"
 				}
 			],
 			"sinks": [
@@ -25,7 +25,7 @@
 						"referenceName": "ConformedActors",
 						"type": "DatasetReference"
 					},
-					"name": "sink1"
+					"name": "conformedactors"
 				}
 			],
 			"transformations": [
@@ -33,7 +33,7 @@
 					"name": "Union1"
 				}
 			],
-			"script": "\n\nsource(output(\n\t\t\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> actrosvadw\nsource(output(\n\t\tActorID as string,\n\t\tActorName as string,\n\t\tGender as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> actorfcdw\nactrosvadw, actorfcdw union(byName: true)~> Union1\nUnion1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tpartitionFileNames:['Actors.csv'],\n\tpartitionBy('hash', 1)) ~> sink1"
+			"script": "\n\nsource(output(\n\t\tActorID as string,\n\t\tActorName as string,\n\t\tGender as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> actorfcdw\nsource(output(\n\t\tActorID as string,\n\t\tActorName as string,\n\t\tGender as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> vaadw\nactorfcdw, vaadw union(byName: true)~> Union1\nUnion1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tpartitionFileNames:['Actors.csv'],\n\tpartitionBy('hash', 1)) ~> conformedactors"
 		}
 	}
 }
