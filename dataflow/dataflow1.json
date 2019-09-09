@@ -1,0 +1,20 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "catlogmovies",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"script": "\n\nsource(output(\n\t\tSourceSystemID as string,\n\t\tGlobalMovieID as string,\n\t\tSourceSystemMovieID as string,\n\t\tSouthridgeMovieID as string,\n\t\tActorID as string,\n\t\tActorName as string,\n\t\tactors as string,\n\t\ttitle as string,\n\t\tgenre as string,\n\t\trating as string,\n\t\truntime as string,\n\t\treleaseYear as string,\n\t\tavailabilityDate as string,\n\t\tstreamingAvailabilityDate as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\twildcardPaths:['*']) ~> source1"
+		}
+	}
+}
