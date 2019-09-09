@@ -1,0 +1,12 @@
+{
+	"name": "SourceDataset_x9j",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SRMDW",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": []
+	}
+}
