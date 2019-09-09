@@ -1,0 +1,26 @@
+{
+	"name": "DimCategories",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SRMDW",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "MovieCategorySK",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "MovieCategoryDescription",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "DimCategories"
+		}
+	}
+}
