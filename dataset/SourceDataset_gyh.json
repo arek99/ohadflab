@@ -1,0 +1,12 @@
+{
+	"name": "SourceDataset_gyh",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SRMDW",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": []
+	}
+}

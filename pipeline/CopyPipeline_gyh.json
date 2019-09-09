@@ -1,0 +1,74 @@
+{
+	"name": "CopyPipeline_gyh",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_gyh",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "."
+					},
+					{
+						"name": "Destination",
+						"value": "dbo.DimCategories"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "SqlDWSource",
+						"sqlReaderQuery": "INSERT INTO [dbo].[Categories]\r\nSELECT genre from [external].[Catalog]"
+					},
+					"sink": {
+						"type": "SqlDWSink",
+						"allowPolyBase": true,
+						"polyBaseSettings": {
+							"rejectValue": 100,
+							"rejectType": "percentage",
+							"rejectSampleValue": 1000,
+							"useTypeDefault": true
+						}
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "linkedService1",
+							"type": "LinkedServiceReference"
+						},
+						"path": "staging"
+					},
+					"enableSkipIncompatibleRow": true,
+					"redirectIncompatibleRowSettings": {
+						"linkedServiceName": {
+							"referenceName": "linkedService1",
+							"type": "LinkedServiceReference"
+						},
+						"path": "logging"
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceDataset_gyh",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DestinationDataset_gyh",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}
