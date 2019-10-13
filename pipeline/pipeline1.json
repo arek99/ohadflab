@@ -45,7 +45,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "sqldbdestinationil",
+						"referenceName": "sqldbdesttstil",
 						"type": "DatasetReference"
 					}
 				]
