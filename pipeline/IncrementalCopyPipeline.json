@@ -130,7 +130,7 @@
 						},
 						"TableName": {
 							"value": {
-								"value": "@activity('LookupOldWaterMarkActivity').output.firstRowTableName",
+								"value": "@activity('LookupOldWaterMarkActivity').output.firstRow.TableName",
 								"type": "Expression"
 							},
 							"type": "String"
