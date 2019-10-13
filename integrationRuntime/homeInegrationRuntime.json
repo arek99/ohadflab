@@ -1,0 +1,6 @@
+{
+	"name": "homeInegrationRuntime",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}
