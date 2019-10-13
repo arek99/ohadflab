@@ -42,7 +42,7 @@
 				}
 			},
 			{
-				"name": "Lookup2",
+				"name": "LookupNewWaterMarkActivity",
 				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
@@ -52,7 +52,17 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"sqlReaderQuery": "select MAX(LastModifytime) as NewWatermarkvalue from data_source_table"
+					},
+					"dataset": {
+						"referenceName": "sqldeskalsource",
+						"type": "DatasetReference"
+					}
+				}
 			}
 		],
 		"annotations": []
