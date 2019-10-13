@@ -33,8 +33,7 @@
 						"sqlReaderQuery": "select * from data_source_table where LastModifytime > '@{activity('LookupOldWaterMarkActivity').output.firstRow.WatermarkValue}' and LastModifytime <= '@{activity('LookupNewWaterMarkActivity').output.firstRow.NewWatermarkvalue}'"
 					},
 					"sink": {
-						"type": "AzureSqlSink",
-						"sqlWriterStoredProcedureName": "[dbo].[usp_write_watermark]"
+						"type": "AzureSqlSink"
 					},
 					"enableStaging": false
 				},
@@ -46,7 +45,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "sqldbdesttstil",
+						"referenceName": "sqldbdestinationil",
 						"type": "DatasetReference"
 					}
 				]
