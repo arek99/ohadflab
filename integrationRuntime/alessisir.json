@@ -1,0 +1,32 @@
+{
+	"name": "alessisir",
+	"properties": {
+		"type": "Managed",
+		"description": "SSIS IR Test",
+		"typeProperties": {
+			"computeProperties": {
+				"location": "North Europe",
+				"nodeSize": "Standard_D2_v3",
+				"numberOfNodes": 1,
+				"maxParallelExecutionsPerNode": 2,
+				"vNetProperties": {
+					"vNetId": "/subscriptions/aa0c86d8-986a-4c6a-b2bf-86bd647d5b51/resourceGroups/sqldsalab/providers/Microsoft.Network/virtualNetworks/sqldsalab-vnet",
+					"subnet": "default"
+				}
+			},
+			"ssisProperties": {
+				"catalogInfo": {
+					"catalogServerEndpoint": "sqllabdsa.database.windows.net",
+					"catalogAdminUserName": "sqladmin",
+					"catalogAdminPassword": {
+						"type": "SecureString",
+						"value": "**********"
+					},
+					"catalogPricingTier": "Basic"
+				},
+				"edition": "Standard",
+				"licenseType": "LicenseIncluded"
+			}
+		}
+	}
+}
