@@ -1,0 +1,27 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqldwtab",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "Select1"
+				},
+				{
+					"name": "Join1"
+				}
+			],
+			"script": "source(output(\n\t\t{Sale Key} as long,\n\t\t{City Key} as integer,\n\t\t{Customer Key} as integer,\n\t\t{Bill To Customer Key} as integer,\n\t\t{Stock Item Key} as integer,\n\t\t{Invoice Date Key} as date,\n\t\t{Delivery Date Key} as date,\n\t\t{Salesperson Key} as integer,\n\t\t{WWI Invoice ID} as integer,\n\t\tDescription as string,\n\t\tPackage as string,\n\t\tQuantity as integer,\n\t\t{Unit Price} as decimal(18,2),\n\t\t{Tax Rate} as decimal(18,3),\n\t\t{Total Excluding Tax} as decimal(18,2),\n\t\t{Tax Amount} as decimal(18,2),\n\t\tProfit as decimal(18,2),\n\t\t{Total Including Tax} as decimal(18,2),\n\t\t{Total Dry Items} as integer,\n\t\t{Total Chiller Items} as integer,\n\t\t{Lineage Key} as integer\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table') ~> source1\nsource1 select(mapColumn(\n\t\tQuantity,\n\t\t{Unit Price},\n\t\t{Tax Amount},\n\t\t{Total Including Tax}\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select1\nSelect1 join(ERROR_FUNCTION('') == ERROR_FUNCTION(''),\n\tjoinType:'inner',\n\tbroadcast: 'none')~> Join1"
+		}
+	}
+}
