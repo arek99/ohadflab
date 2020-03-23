@@ -1,0 +1,16 @@
+{
+	"name": "sqldbtwtable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqltwdb",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "test"
+		}
+	}
+}
