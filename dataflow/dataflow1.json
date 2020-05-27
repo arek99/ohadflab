@@ -6,27 +6,15 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "Json3",
+						"referenceName": "Json6",
 						"type": "DatasetReference"
 					},
 					"name": "source1"
 				}
 			],
-			"sinks": [
-				{
-					"dataset": {
-						"referenceName": "Json4",
-						"type": "DatasetReference"
-					},
-					"name": "sink1"
-				}
-			],
-			"transformations": [
-				{
-					"name": "Select1"
-				}
-			],
-			"script": "source(output(\n\t\ttype as string,\n\t\tid as string,\n\t\ttimestamp as string,\n\t\tlocalTimestamp as string,\n\t\tserviceUrl as string,\n\t\tchannelId as string,\n\t\tfrom as (id as string, name as string, aadObjectId as string, role as string),\n\t\tconversation as (conversationType as string, id as string, tenantId as string),\n\t\trecipient as (id as string, name as string),\n\t\ttextFormat as string,\n\t\tlocale as string,\n\t\ttext as string,\n\t\tattachments as (contentType as string, content as string)[],\n\t\tentities as (type as string, locale as string, country as string, platform as string)[],\n\t\tchannelData as (tenant as (id as string))\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: false,\n\tsingleDocument: true,\n\tunquotedColumnNames: true,\n\thasComments: true) ~> source1\nsource1 select(mapColumn(\n\t\tid = id,\n\t\ttype,\n\t\ttext\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select1\nSelect1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tpartitionFileNames:['output.json'],\n\tpartitionBy('hash', 1),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1"
+			"sinks": [],
+			"transformations": [],
+			"script": "source(output(\n\t\tid as string,\n\t\tdescription as string,\n\t\ttags as (name as string)[],\n\t\tfoodGroup as string,\n\t\tversion as string,\n\t\ttype as string,\n\t\ttimestamp as string,\n\t\tlocalTimestamp as string,\n\t\tserviceUrl as string,\n\t\tchannelId as string,\n\t\tfrom as (id as string, name as string, aadObjectId as string, role as string),\n\t\tconversation as (conversationType as string, id as string, tenantId as string),\n\t\trecipient as (id as string, name as string),\n\t\ttextFormat as string,\n\t\tlocale as string,\n\t\ttext as string,\n\t\tattachments as (contentType as string, content as string)[],\n\t\tentities as (type as string, locale as string, country as string, platform as string)[],\n\t\tchannelData as (tenant as (id as string))\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: false,\n\tsingleDocument: true) ~> source1"
 		}
 	}
 }
