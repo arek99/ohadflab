@@ -1,0 +1,351 @@
+{
+	"name": "JsonClim",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorageJsonrek",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "clim"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"state": {
+					"type": "string"
+				},
+				"longitude": {
+					"type": "number"
+				},
+				"timezone": {
+					"type": "string"
+				},
+				"status": {
+					"type": "integer"
+				},
+				"latitude": {
+					"type": "number"
+				},
+				"updated_at": {
+					"type": "string"
+				},
+				"created_at": {
+					"type": "string"
+				},
+				"id": {
+					"type": "integer"
+				},
+				"alert": {
+					"type": "integer"
+				},
+				"zip": {
+					"type": "string"
+				},
+				"user_id": {
+					"type": "string"
+				},
+				"locations": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"address": {
+								"type": "string"
+							},
+							"country": {
+								"type": "string"
+							},
+							"authorization": {
+								"type": "string"
+							},
+							"application_id": {
+								"type": "string"
+							},
+							"primary_users": {
+								"type": "array",
+								"items": {
+									"type": "string"
+								}
+							},
+							"city": {
+								"type": "string"
+							},
+							"name": {
+								"type": "string"
+							},
+							"industry": {
+								"type": "string"
+							},
+							"alert": {
+								"type": "integer"
+							},
+							"zip": {
+								"type": "string"
+							},
+							"user_id": {
+								"type": "string"
+							},
+							"id": {
+								"type": "integer"
+							},
+							"created_at": {
+								"type": "string"
+							},
+							"updated_at": {
+								"type": "string"
+							},
+							"devices": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"ts": {
+											"type": "integer"
+										},
+										"sensor_use": {
+											"type": "string"
+										},
+										"children_action": {
+											"type": "integer"
+										},
+										"online": {
+											"type": "integer"
+										},
+										"created_at": {
+											"type": "string"
+										},
+										"device_type_id": {
+											"type": "string"
+										},
+										"broadcast_interval": {
+											"type": "integer"
+										},
+										"sensors": {
+											"type": "array",
+											"items": {
+												"type": "object",
+												"properties": {
+													"id": {
+														"type": "string"
+													},
+													"thing_type": {
+														"type": "integer"
+													},
+													"alert": {
+														"type": "integer"
+													},
+													"unit": {
+														"type": "string"
+													},
+													"name": {
+														"type": "string"
+													},
+													"v": {
+														"type": "number"
+													},
+													"type": {
+														"type": "string"
+													},
+													"properties": {
+														"type": "object",
+														"properties": {
+															"channel": {
+																"type": "integer"
+															}
+														}
+													},
+													"channel": {
+														"type": "string"
+													},
+													"sensor_use": {
+														"type": "string"
+													},
+													"ts": {
+														"type": "integer"
+													},
+													"cayenne_id": {
+														"type": "string"
+													},
+													"parent_id": {
+														"type": "string"
+													},
+													"enabled": {
+														"type": "integer"
+													},
+													"cached": {
+														"type": "boolean"
+													},
+													"device_type_id": {
+														"type": "string"
+													},
+													"created_at": {
+														"type": "string"
+													}
+												}
+											}
+										},
+										"enabled": {
+											"type": "integer"
+										},
+										"children_note": {
+											"type": "integer"
+										},
+										"name": {
+											"type": "string"
+										},
+										"sensor_type": {
+											"type": "string"
+										},
+										"alert": {
+											"type": "integer"
+										},
+										"thing_type": {
+											"type": "integer"
+										},
+										"marker_alert": {
+											"type": "string"
+										},
+										"id": {
+											"type": "string"
+										},
+										"properties": {
+											"type": "object",
+											"properties": {
+												"network": {
+													"type": "null"
+												},
+												"device_registry_id": {
+													"type": "string"
+												},
+												"codec": {
+													"type": "null"
+												},
+												"codec.prox_unit": {
+													"type": "string"
+												},
+												"codec.vol_unit": {
+													"type": "string"
+												},
+												"activation": {
+													"type": "string"
+												},
+												"unit": {
+													"type": "string"
+												},
+												"deveui": {
+													"type": "string"
+												}
+											}
+										},
+										"location_meta": {
+											"type": "array"
+										}
+									}
+								}
+							},
+							"latitude": {
+								"type": "number"
+							},
+							"timezone": {
+								"type": "string"
+							},
+							"meta_options": {
+								"type": "array"
+							},
+							"status": {
+								"type": "integer"
+							},
+							"supported_device": {
+								"type": "string"
+							},
+							"longitude": {
+								"type": "number"
+							},
+							"state": {
+								"type": "string"
+							},
+							"company_id": {
+								"type": "integer"
+							}
+						}
+					}
+				},
+				"name": {
+					"type": "string"
+				},
+				"city": {
+					"type": "string"
+				},
+				"industry": {
+					"type": "string"
+				},
+				"primary_users": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"application_id": {
+					"type": "string"
+				},
+				"country": {
+					"type": "string"
+				},
+				"authorization": {
+					"type": "string"
+				},
+				"address": {
+					"type": "string"
+				},
+				"stationId": {
+					"type": "integer"
+				},
+				"data": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"datetime": {
+								"type": "string"
+							},
+							"channels": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"id": {
+											"type": "integer"
+										},
+										"name": {
+											"type": "string"
+										},
+										"alias": {
+											"type": "null"
+										},
+										"value": {
+											"type": "number"
+										},
+										"status": {
+											"type": "integer"
+										},
+										"valid": {
+											"type": "boolean"
+										},
+										"description": {
+											"type": "null"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
