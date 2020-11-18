@@ -1,0 +1,16 @@
+{
+	"name": "AzureSqlTableClim",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDsaLab",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "stationcomplete"
+		}
+	}
+}

@@ -1,0 +1,93 @@
+{
+	"name": "climcellstatinfo",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "blobneu",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "ds_i_8_stationInfo.json",
+				"container": "clim"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"stationId": {
+					"type": "integer"
+				},
+				"name": {
+					"type": "string"
+				},
+				"shortName": {
+					"type": "string"
+				},
+				"stationsTag": {
+					"type": "string"
+				},
+				"location": {
+					"type": "object",
+					"properties": {
+						"latitude": {
+							"type": "number"
+						},
+						"longitude": {
+							"type": "number"
+						}
+					}
+				},
+				"timebase": {
+					"type": "integer"
+				},
+				"active": {
+					"type": "boolean"
+				},
+				"owner": {
+					"type": "string"
+				},
+				"regionId": {
+					"type": "integer"
+				},
+				"monitors": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"channelId": {
+								"type": "integer"
+							},
+							"name": {
+								"type": "string"
+							},
+							"alias": {
+								"type": "null"
+							},
+							"active": {
+								"type": "boolean"
+							},
+							"typeId": {
+								"type": "integer"
+							},
+							"pollutantId": {
+								"type": "null"
+							},
+							"units": {
+								"type": "string"
+							},
+							"description": {
+								"type": "null"
+							}
+						}
+					}
+				},
+				"StationTarget": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,45 @@
+{
+	"name": "climjsondf",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "climcellstatinfo",
+						"type": "DatasetReference"
+					},
+					"name": "statinfo"
+				},
+				{
+					"dataset": {
+						"referenceName": "climcellstationid10",
+						"type": "DatasetReference"
+					},
+					"name": "statid"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTableClim",
+						"type": "DatasetReference"
+					},
+					"name": "sql"
+				}
+			],
+			"transformations": [
+				{
+					"name": "stationinfo"
+				},
+				{
+					"name": "stationid"
+				},
+				{
+					"name": "Join1"
+				}
+			],
+			"script": "source(output(\n\t\tstationId as string,\n\t\tname as string,\n\t\tshortName as string,\n\t\tstationsTag as string,\n\t\tlocation as (latitude as double, longitude as double),\n\t\ttimebase as string,\n\t\tactive as boolean,\n\t\towner as string,\n\t\tregionId as string,\n\t\tmonitors as (channelId as string, name as string, alias as string, active as boolean, typeId as string, pollutantId as string, units as string, description as string)[],\n\t\tStationTarget as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'documentPerLine') ~> statinfo\nsource(output(\n\t\tstationId as string,\n\t\tdata as (datetime as string, channels as (id as string, name as string, alias as string, value as double, status as string, valid as boolean, description as string)[])[]\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'documentPerLine') ~> statid\nstatinfo foldDown(unroll(monitors, monitors),\n\tmapColumn(\n\t\tstationId,\n\t\tname,\n\t\tshortName,\n\t\tstationsTag,\n\t\tlatitude = location.latitude,\n\t\tlongitude = location.longitude,\n\t\ttimebase,\n\t\tactive,\n\t\towner,\n\t\tregionId,\n\t\tchannelId = monitors.channelId,\n\t\tmonitorname = monitors.name,\n\t\tmonitoralias = monitors.alias,\n\t\tmonitoractive = monitors.active,\n\t\tmonitortypeId = monitors.typeId,\n\t\tmonitorpollutantId = monitors.pollutantId,\n\t\tmonitorunitsunits = monitors.units,\n\t\tmonitordescription = monitors.description,\n\t\tStationTarget\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> stationinfo\nstatid foldDown(unroll(data),\n\tmapColumn(\n\t\tstationId,\n\t\tdatetime = data.datetime,\n\t\tchannels = data.channels,\n\t\tid = data.channels.id,\n\t\tname = data.channels.name,\n\t\talias = data.channels.alias,\n\t\tvalue = data.channels.value,\n\t\tstatus = data.channels.status,\n\t\tvalid = data.channels.valid,\n\t\tdescription = data.channels.description\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> stationid\nstationinfo, stationid join(stationinfo@stationId == stationid@stationId,\n\tjoinType:'inner',\n\tbroadcast: 'auto')~> Join1\nJoin1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError') ~> sql"
+		}
+	}
+}

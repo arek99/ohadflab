@@ -1,0 +1,66 @@
+{
+	"name": "climcellstationid10",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "blobneu",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "ds_i_3_stid10.json",
+				"container": "clim"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"stationId": {
+					"type": "integer"
+				},
+				"data": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"datetime": {
+								"type": "string"
+							},
+							"channels": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"id": {
+											"type": "integer"
+										},
+										"name": {
+											"type": "string"
+										},
+										"alias": {
+											"type": "null"
+										},
+										"value": {
+											"type": "number"
+										},
+										"status": {
+											"type": "integer"
+										},
+										"valid": {
+											"type": "boolean"
+										},
+										"description": {
+											"type": "null"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
