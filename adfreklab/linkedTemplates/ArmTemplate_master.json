@@ -1,0 +1,410 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adfreklab"
+		},
+		"ADLS2Southridge_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ADLS2Southridge'"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+		},
+		"AzureBlobStorage2_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage2'"
+		},
+		"AzureBlobStorage4_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage4'"
+		},
+		"AzureBlobStorageCOntainer_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorageCOntainer'"
+		},
+		"AzureBlobStorageJson_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorageJson'"
+		},
+		"AzureBlobStorageJson2_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorageJson2'"
+		},
+		"AzureBlobStorageJsonrek_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorageJsonrek'"
+		},
+		"AzureBlobStoragejsonmessage_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStoragejsonmessage'"
+		},
+		"AzureDataLakeSGen2_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeSGen2'"
+		},
+		"AzureDataLakeStorage1_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage1'"
+		},
+		"AzureSqlDB_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDB'"
+		},
+		"AzureSqlDBCloudStream_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDBCloudStream'"
+		},
+		"AzureSqlDW1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDW1'"
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1'"
+		},
+		"AzureSqlDatabase2_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase2'"
+		},
+		"AzureSqlDatabase3_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase3'"
+		},
+		"AzureSqlDsaLab_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDsaLab'"
+		},
+		"AzureSql_CloudSales_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSql_CloudSales'"
+		},
+		"AzureSqltwdb_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqltwdb'"
+		},
+		"CosmosDb1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'CosmosDb1'"
+		},
+		"CosmosDb2_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'CosmosDb2'"
+		},
+		"CosmosDbMov_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'CosmosDbMov'"
+		},
+		"FileServer4CofeeRentals_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'FileServer4CofeeRentals'"
+		},
+		"SQLDeskalHome_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SQLDeskalHome'"
+		},
+		"SQLDeskalHome_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'SQLDeskalHome'"
+		},
+		"SRMDW_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SRMDW'"
+		},
+		"SqlServer1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SqlServer1'"
+		},
+		"SqlServer1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'SqlServer1'"
+		},
+		"blobneu_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'blobneu'"
+		},
+		"copyfile_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'copyfile'"
+		},
+		"linkedService1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'linkedService1'"
+		},
+		"myrekcosmo_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'myrekcosmo'"
+		},
+		"myrekcosmodest_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'myrekcosmodest'"
+		},
+		"sqldbtstil_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'sqldbtstil'"
+		},
+		"sqllab_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'sqllab'"
+		},
+		"ADLS2Southridge_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://southridgedala.dfs.core.windows.net"
+		},
+		"AzureDataLakeSGen2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://bsgentwoneu.dfs.core.windows.net"
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://southrblb.dfs.core.windows.net"
+		},
+		"FileServer4CofeeRentals_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "C:\\"
+		},
+		"FileServer4CofeeRentals_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "openhackadmin"
+		},
+		"SQLDeskalHome_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "deskal\\areci"
+		},
+		"SqlServer1_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "openhackadmin"
+		},
+		"copyfile_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://bsgentwoneu.dfs.core.windows.net"
+		},
+		"integrationRuntime1_properties_typeProperties_ssisProperties_catalogInfo_catalogServerEndpoint": {
+			"type": "string",
+			"defaultValue": "sqllabdsa.database.windows.net"
+		},
+		"integrationRuntime1_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminUserName": {
+			"type": "string",
+			"defaultValue": "sqladmin"
+		},
+		"integrationRuntime1_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminPassword": {
+			"type": "secureString"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "adfreklab_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"ADLS2Southridge_accountKey": {
+						"value": "[parameters('ADLS2Southridge_accountKey')]"
+					},
+					"AzureBlobStorage1_connectionString": {
+						"value": "[parameters('AzureBlobStorage1_connectionString')]"
+					},
+					"AzureBlobStorage2_connectionString": {
+						"value": "[parameters('AzureBlobStorage2_connectionString')]"
+					},
+					"AzureBlobStorage4_connectionString": {
+						"value": "[parameters('AzureBlobStorage4_connectionString')]"
+					},
+					"AzureBlobStorageCOntainer_connectionString": {
+						"value": "[parameters('AzureBlobStorageCOntainer_connectionString')]"
+					},
+					"AzureBlobStorageJson_connectionString": {
+						"value": "[parameters('AzureBlobStorageJson_connectionString')]"
+					},
+					"AzureBlobStorageJson2_connectionString": {
+						"value": "[parameters('AzureBlobStorageJson2_connectionString')]"
+					},
+					"AzureBlobStorageJsonrek_connectionString": {
+						"value": "[parameters('AzureBlobStorageJsonrek_connectionString')]"
+					},
+					"AzureBlobStoragejsonmessage_connectionString": {
+						"value": "[parameters('AzureBlobStoragejsonmessage_connectionString')]"
+					},
+					"AzureDataLakeSGen2_accountKey": {
+						"value": "[parameters('AzureDataLakeSGen2_accountKey')]"
+					},
+					"AzureDataLakeStorage1_accountKey": {
+						"value": "[parameters('AzureDataLakeStorage1_accountKey')]"
+					},
+					"AzureSqlDB_connectionString": {
+						"value": "[parameters('AzureSqlDB_connectionString')]"
+					},
+					"AzureSqlDBCloudStream_connectionString": {
+						"value": "[parameters('AzureSqlDBCloudStream_connectionString')]"
+					},
+					"AzureSqlDW1_connectionString": {
+						"value": "[parameters('AzureSqlDW1_connectionString')]"
+					},
+					"AzureSqlDatabase1_connectionString": {
+						"value": "[parameters('AzureSqlDatabase1_connectionString')]"
+					},
+					"AzureSqlDatabase2_connectionString": {
+						"value": "[parameters('AzureSqlDatabase2_connectionString')]"
+					},
+					"AzureSqlDatabase3_connectionString": {
+						"value": "[parameters('AzureSqlDatabase3_connectionString')]"
+					},
+					"AzureSqlDsaLab_connectionString": {
+						"value": "[parameters('AzureSqlDsaLab_connectionString')]"
+					},
+					"AzureSql_CloudSales_connectionString": {
+						"value": "[parameters('AzureSql_CloudSales_connectionString')]"
+					},
+					"AzureSqltwdb_connectionString": {
+						"value": "[parameters('AzureSqltwdb_connectionString')]"
+					},
+					"ADLS2Southridge_properties_typeProperties_url": {
+						"value": "[parameters('ADLS2Southridge_properties_typeProperties_url')]"
+					},
+					"AzureDataLakeSGen2_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeSGen2_properties_typeProperties_url')]"
+					},
+					"AzureDataLakeStorage1_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "adfreklab_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"CosmosDb1_connectionString": {
+						"value": "[parameters('CosmosDb1_connectionString')]"
+					},
+					"CosmosDb2_connectionString": {
+						"value": "[parameters('CosmosDb2_connectionString')]"
+					},
+					"CosmosDbMov_connectionString": {
+						"value": "[parameters('CosmosDbMov_connectionString')]"
+					},
+					"FileServer4CofeeRentals_password": {
+						"value": "[parameters('FileServer4CofeeRentals_password')]"
+					},
+					"SRMDW_connectionString": {
+						"value": "[parameters('SRMDW_connectionString')]"
+					},
+					"SqlServer1_connectionString": {
+						"value": "[parameters('SqlServer1_connectionString')]"
+					},
+					"SqlServer1_password": {
+						"value": "[parameters('SqlServer1_password')]"
+					},
+					"blobneu_connectionString": {
+						"value": "[parameters('blobneu_connectionString')]"
+					},
+					"copyfile_accountKey": {
+						"value": "[parameters('copyfile_accountKey')]"
+					},
+					"linkedService1_connectionString": {
+						"value": "[parameters('linkedService1_connectionString')]"
+					},
+					"myrekcosmo_connectionString": {
+						"value": "[parameters('myrekcosmo_connectionString')]"
+					},
+					"myrekcosmodest_connectionString": {
+						"value": "[parameters('myrekcosmodest_connectionString')]"
+					},
+					"sqldbtstil_connectionString": {
+						"value": "[parameters('sqldbtstil_connectionString')]"
+					},
+					"sqllab_connectionString": {
+						"value": "[parameters('sqllab_connectionString')]"
+					},
+					"FileServer4CofeeRentals_properties_typeProperties_host": {
+						"value": "[parameters('FileServer4CofeeRentals_properties_typeProperties_host')]"
+					},
+					"FileServer4CofeeRentals_properties_typeProperties_userId": {
+						"value": "[parameters('FileServer4CofeeRentals_properties_typeProperties_userId')]"
+					},
+					"SqlServer1_properties_typeProperties_userName": {
+						"value": "[parameters('SqlServer1_properties_typeProperties_userName')]"
+					},
+					"copyfile_properties_typeProperties_url": {
+						"value": "[parameters('copyfile_properties_typeProperties_url')]"
+					},
+					"integrationRuntime1_properties_typeProperties_ssisProperties_catalogInfo_catalogServerEndpoint": {
+						"value": "[parameters('integrationRuntime1_properties_typeProperties_ssisProperties_catalogInfo_catalogServerEndpoint')]"
+					},
+					"integrationRuntime1_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminUserName": {
+						"value": "[parameters('integrationRuntime1_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminUserName')]"
+					},
+					"integrationRuntime1_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminPassword": {
+						"value": "[parameters('integrationRuntime1_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminPassword')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adfreklab_ArmTemplate_0')]"
+			]
+		},
+		{
+			"name": "adfreklab_ArmTemplate_2",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_2.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"SQLDeskalHome_connectionString": {
+						"value": "[parameters('SQLDeskalHome_connectionString')]"
+					},
+					"SQLDeskalHome_password": {
+						"value": "[parameters('SQLDeskalHome_password')]"
+					},
+					"SQLDeskalHome_properties_typeProperties_userName": {
+						"value": "[parameters('SQLDeskalHome_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adfreklab_ArmTemplate_1')]"
+			]
+		}
+	]
+}

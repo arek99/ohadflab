@@ -1,0 +1,150 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adfreklab"
+		},
+		"ADLS2Southridge_accountKey": {
+			"value": ""
+		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
+		"AzureBlobStorage2_connectionString": {
+			"value": ""
+		},
+		"AzureBlobStorage4_connectionString": {
+			"value": ""
+		},
+		"AzureBlobStorageCOntainer_connectionString": {
+			"value": ""
+		},
+		"AzureBlobStorageJson_connectionString": {
+			"value": ""
+		},
+		"AzureBlobStorageJson2_connectionString": {
+			"value": ""
+		},
+		"AzureBlobStorageJsonrek_connectionString": {
+			"value": ""
+		},
+		"AzureBlobStoragejsonmessage_connectionString": {
+			"value": ""
+		},
+		"AzureDataLakeSGen2_accountKey": {
+			"value": ""
+		},
+		"AzureDataLakeStorage1_accountKey": {
+			"value": ""
+		},
+		"AzureSqlDB_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDBCloudStream_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDW1_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabase2_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabase3_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDsaLab_connectionString": {
+			"value": ""
+		},
+		"AzureSql_CloudSales_connectionString": {
+			"value": ""
+		},
+		"AzureSqltwdb_connectionString": {
+			"value": ""
+		},
+		"CosmosDb1_connectionString": {
+			"value": ""
+		},
+		"CosmosDb2_connectionString": {
+			"value": ""
+		},
+		"CosmosDbMov_connectionString": {
+			"value": ""
+		},
+		"FileServer4CofeeRentals_password": {
+			"value": ""
+		},
+		"SQLDeskalHome_connectionString": {
+			"value": ""
+		},
+		"SQLDeskalHome_password": {
+			"value": ""
+		},
+		"SRMDW_connectionString": {
+			"value": ""
+		},
+		"SqlServer1_connectionString": {
+			"value": ""
+		},
+		"SqlServer1_password": {
+			"value": ""
+		},
+		"blobneu_connectionString": {
+			"value": ""
+		},
+		"copyfile_accountKey": {
+			"value": ""
+		},
+		"linkedService1_connectionString": {
+			"value": ""
+		},
+		"myrekcosmo_connectionString": {
+			"value": ""
+		},
+		"myrekcosmodest_connectionString": {
+			"value": ""
+		},
+		"sqldbtstil_connectionString": {
+			"value": ""
+		},
+		"sqllab_connectionString": {
+			"value": ""
+		},
+		"ADLS2Southridge_properties_typeProperties_url": {
+			"value": "https://southridgedala.dfs.core.windows.net"
+		},
+		"AzureDataLakeSGen2_properties_typeProperties_url": {
+			"value": "https://bsgentwoneu.dfs.core.windows.net"
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://southrblb.dfs.core.windows.net"
+		},
+		"FileServer4CofeeRentals_properties_typeProperties_host": {
+			"value": "C:\\"
+		},
+		"FileServer4CofeeRentals_properties_typeProperties_userId": {
+			"value": "openhackadmin"
+		},
+		"SQLDeskalHome_properties_typeProperties_userName": {
+			"value": "deskal\\areci"
+		},
+		"SqlServer1_properties_typeProperties_userName": {
+			"value": "openhackadmin"
+		},
+		"copyfile_properties_typeProperties_url": {
+			"value": "https://bsgentwoneu.dfs.core.windows.net"
+		},
+		"integrationRuntime1_properties_typeProperties_ssisProperties_catalogInfo_catalogServerEndpoint": {
+			"value": "sqllabdsa.database.windows.net"
+		},
+		"integrationRuntime1_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminUserName": {
+			"value": "sqladmin"
+		},
+		"integrationRuntime1_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminPassword": {
+			"value": ""
+		}
+	}
+}
