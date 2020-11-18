@@ -1,0 +1,294 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name"
+		},
+		"blobneu": {
+			"type": "string"
+		},
+		"AzureSqlDsaLab": {
+			"type": "string"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/climtest')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "climdatflw",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "climjsondf",
+								"type": "DataFlowReference"
+							},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/climjsondf')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/climjsondf')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "climcellstatinfo",
+								"type": "DatasetReference"
+							},
+							"name": "statinfo"
+						},
+						{
+							"dataset": {
+								"referenceName": "climcellstationid10",
+								"type": "DatasetReference"
+							},
+							"name": "statid"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "AzureSqlTableClim",
+								"type": "DatasetReference"
+							},
+							"name": "sink1"
+						}
+					],
+					"transformations": [
+						{
+							"name": "stationid10"
+						},
+						{
+							"name": "stationinfo"
+						},
+						{
+							"name": "Join1"
+						}
+					],
+					"script": "source(output(\n\t\tstationId as string,\n\t\tname as string,\n\t\tshortName as string,\n\t\tstationsTag as string,\n\t\tlocation as (latitude as double, longitude as double),\n\t\ttimebase as string,\n\t\tactive as boolean,\n\t\towner as string,\n\t\tregionId as string,\n\t\tmonitors as (channelId as string, name as string, alias as string, active as boolean, typeId as string, pollutantId as string, units as string, description as string)[],\n\t\tStationTarget as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'arrayOfDocuments') ~> statinfo\nsource(output(\n\t\tstationId as string,\n\t\tdata as (datetime as string, channels as (id as string, name as string, alias as string, value as double, status as string, valid as boolean, description as string)[])[]\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'singleDocument') ~> statid\nstatid foldDown(unroll(data.channels, data.channels),\n\tmapColumn(\n\t\tstationId,\n\t\tdatetime = data.datetime,\n\t\tid = data.channels.id,\n\t\tname = data.channels.name,\n\t\talias = data.channels.alias,\n\t\tvalue = data.channels.value,\n\t\tstatus = data.channels.status,\n\t\tvalid = data.channels.valid,\n\t\tdescription = data.channels.description\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> stationid10\nstatinfo foldDown(unroll(monitors),\n\tmapColumn(\n\t\tstationId,\n\t\tname,\n\t\tshortName,\n\t\tstationsTag,\n\t\tlatitude = location.latitude,\n\t\tlongitude = location.longitude,\n\t\ttimebase,\n\t\tactive,\n\t\towner,\n\t\tregionId,\n\t\tmonitorchannelId = monitors.channelId,\n\t\tmonitorname = monitors.name,\n\t\tmonitoralias = monitors.alias,\n\t\tmonitoractive = monitors.active,\n\t\tmonitortypeId = monitors.typeId,\n\t\tmonitorpollutantId = monitors.pollutantId,\n\t\tmonitorunits = monitors.units,\n\t\tmonitordescription = monitors.description,\n\t\tStationTarget\n\t),\n\tskipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> stationinfo\nstationinfo, stationid10 join(stationinfo@stationId == stationid10@stationId,\n\tjoinType:'inner',\n\tbroadcast: 'auto')~> Join1\nJoin1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tformat: 'table',\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError') ~> sink1"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/climcellstatinfo')]",
+				"[concat(variables('factoryId'), '/datasets/climcellstationid10')]",
+				"[concat(variables('factoryId'), '/datasets/AzureSqlTableClim')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/climcellstatinfo')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "[parameters('blobneu')]",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "ds_i_8_stationInfo.json",
+						"container": "clim"
+					}
+				},
+				"schema": {
+					"type": "object",
+					"properties": {
+						"stationId": {
+							"type": "integer"
+						},
+						"name": {
+							"type": "string"
+						},
+						"shortName": {
+							"type": "string"
+						},
+						"stationsTag": {
+							"type": "string"
+						},
+						"location": {
+							"type": "object",
+							"properties": {
+								"latitude": {
+									"type": "number"
+								},
+								"longitude": {
+									"type": "number"
+								}
+							}
+						},
+						"timebase": {
+							"type": "integer"
+						},
+						"active": {
+							"type": "boolean"
+						},
+						"owner": {
+							"type": "string"
+						},
+						"regionId": {
+							"type": "integer"
+						},
+						"monitors": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"channelId": {
+										"type": "integer"
+									},
+									"name": {
+										"type": "string"
+									},
+									"alias": {
+										"type": "null"
+									},
+									"active": {
+										"type": "boolean"
+									},
+									"typeId": {
+										"type": "integer"
+									},
+									"pollutantId": {
+										"type": "null"
+									},
+									"units": {
+										"type": "string"
+									},
+									"description": {
+										"type": "null"
+									}
+								}
+							}
+						},
+						"StationTarget": {
+							"type": "string"
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/climcellstationid10')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "[parameters('blobneu')]",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "ds_i_3_stid10.json",
+						"container": "clim"
+					}
+				},
+				"schema": {
+					"type": "object",
+					"properties": {
+						"stationId": {
+							"type": "integer"
+						},
+						"data": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"datetime": {
+										"type": "string"
+									},
+									"channels": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"properties": {
+												"id": {
+													"type": "integer"
+												},
+												"name": {
+													"type": "string"
+												},
+												"alias": {
+													"type": "null"
+												},
+												"value": {
+													"type": "number"
+												},
+												"status": {
+													"type": "integer"
+												},
+												"valid": {
+													"type": "boolean"
+												},
+												"description": {
+													"type": "null"
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlTableClim')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "[parameters('AzureSqlDsaLab')]",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "stationcomplete"
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
